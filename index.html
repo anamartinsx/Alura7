@@ -1,1 +1,376 @@
+<!DOCTYPE html>
+<html lang="pt-br">
 
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>IA na Escola</title>
+
+<style>
+
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+
+body {
+font-family: Arial, sans-serif;
+
+background: linear-gradient(
+135deg,
+#ffd6e7,
+#fff1b8
+);
+
+min-height: 100vh;
+
+display: flex;
+justify-content: center;
+align-items: center;
+
+padding: 20px;
+}
+
+.container {
+width: 100%;
+max-width: 650px;
+
+background-color: #fffafc;
+
+padding: 35px;
+
+border-radius: 20px;
+
+text-align: center;
+
+border: 3px solid #f4c7d7;
+
+box-shadow:
+0 10px 30px rgba(190, 120, 145, 0.25);
+}
+
+h1 {
+color: #d66b91;
+
+font-size: 32px;
+
+margin-bottom: 10px;
+}
+
+.subtitulo {
+color: #765b63;
+
+font-size: 17px;
+
+line-height: 1.5;
+
+margin-bottom: 25px;
+}
+
+.caixa {
+background-color: #fff3bd;
+
+border: 2px solid #f0d67d;
+
+border-radius: 15px;
+
+padding: 20px;
+
+margin-bottom: 20px;
+}
+
+.caixa h2 {
+color: #8a6b36;
+
+font-size: 20px;
+
+margin-bottom: 15px;
+}
+
+select {
+width: 100%;
+
+padding: 13px;
+
+border-radius: 10px;
+
+border: 2px solid #edb7cb;
+
+background-color: white;
+
+font-size: 16px;
+
+color: #765b63;
+}
+
+select:focus {
+outline: none;
+
+border-color: #dc8eaa;
+}
+
+button {
+background-color: #e89ab4;
+
+color: white;
+
+border: none;
+
+padding: 14px 28px;
+
+border-radius: 10px;
+
+font-size: 17px;
+
+font-weight: bold;
+
+cursor: pointer;
+
+margin-top: 10px;
+
+transition: 0.3s;
+}
+
+button:hover {
+background-color: #d9789a;
+
+transform: scale(1.03);
+}
+
+.resultado {
+margin-top: 25px;
+
+background-color: #fff7d6;
+
+border: 2px solid #f0d67d;
+
+border-radius: 15px;
+
+padding: 25px;
+
+min-height: 130px;
+
+display: flex;
+
+justify-content: center;
+
+align-items: center;
+}
+
+#resultado {
+color: #765b40;
+
+font-size: 19px;
+
+line-height: 1.6;
+
+font-weight: bold;
+}
+
+.explicacao {
+margin-top: 25px;
+
+color: #876d75;
+
+font-size: 14px;
+
+line-height: 1.6;
+}
+
+.rodape {
+margin-top: 20px;
+
+color: #c77998;
+
+font-size: 14px;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+<h1>🤖 IA na Escola</h1>
+
+<p class="subtitulo">
+Descubra ideias de como a Inteligência Artificial
+pode ser utilizada de forma criativa na escola.
+</p>
+
+
+<div class="caixa">
+
+<h2>📚 Escolha uma área</h2>
+
+<select id="area">
+
+<option value="todas">
+Todas as áreas
+</option>
+
+<option value="estudos">
+Estudos
+</option>
+
+<option value="criatividade">
+Criatividade
+</option>
+
+<option value="organizacao">
+Organização
+</option>
+
+<option value="professores">
+Professores
+</option>
+
+</select>
+
+
+<button onclick="sortearIdeia()">
+✨ Sortear uma ideia
+</button>
+
+</div>
+
+
+<div class="resultado">
+
+<p id="resultado">
+Clique no botão para descobrir uma ideia!
+</p>
+
+</div>
+
+
+<p class="explicacao">
+
+💡 A Inteligência Artificial pode ajudar nos estudos
+e na organização, mas deve ser utilizada com
+responsabilidade e pensamento crítico.
+
+</p>
+
+
+<p class="rodape">
+🌸 Projeto escolar sobre Inteligência Artificial
+</p>
+
+</div>
+
+
+<script>
+
+const ideias = {
+
+estudos: [
+
+"Criar um resumo de um conteúdo estudado.",
+
+"Criar perguntas para revisar uma matéria.",
+
+"Explicar um assunto de uma maneira mais simples.",
+
+"Criar exercícios para praticar antes de uma prova."
+
+],
+
+
+criatividade: [
+
+"Criar ideias para uma história.",
+
+"Criar sugestões para um projeto escolar.",
+
+"Ajudar a desenvolver ideias para uma apresentação.",
+
+"Criar sugestões para um trabalho artístico."
+
+],
+
+
+organizacao: [
+
+"Criar uma lista de tarefas para os estudos.",
+
+"Organizar as etapas de um trabalho escolar.",
+
+"Montar um cronograma de estudos.",
+
+"Criar uma lista de conteúdos para revisar."
+
+],
+
+
+professores: [
+
+"Criar ideias de atividades para os alunos.",
+
+"Sugerir perguntas sobre determinado conteúdo.",
+
+"Criar diferentes formas de explicar um assunto.",
+
+"Ajudar a organizar uma atividade escolar."
+
+]
+
+};
+
+
+function sortearIdeia() {
+
+let area =
+document.getElementById("area").value;
+
+
+let lista = [];
+
+
+if (area === "todas") {
+
+lista = [
+
+...ideias.estudos,
+
+...ideias.criatividade,
+
+...ideias.organizacao,
+
+...ideias.professores
+
+];
+
+} else {
+
+lista = ideias[area];
+
+}
+
+
+let numeroAleatorio =
+Math.floor(
+Math.random() * lista.length
+);
+
+
+let ideia =
+lista[numeroAleatorio];
+
+
+document.getElementById("resultado").textContent =
+"💡 " + ideia;
+
+}
+
+</script>
+
+</body>
+
+</html>
